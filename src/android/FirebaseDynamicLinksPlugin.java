@@ -88,10 +88,10 @@ public class FirebaseDynamicLinksPlugin extends ReflectiveCordovaPlugin {
                         PendingDynamicLinkData data = task.getResult();
 
                         JSONObject result = new JSONObject();
-                        result.put("deepLink", data.getLink());
+                        result.put("deepLink", intent.getData());
                         result.put("clickTimestamp", data.getClickTimestamp());
                         result.put("minimumAppVersion", data.getMinimumAppVersion());
-
+                        intent.setData(null);
                         if (callbackContext != null) {
                             PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, result);
                             pluginResult.setKeepCallback(callbackContext == dynamicLinkCallback);
